@@ -209,6 +209,7 @@ export interface RNInputProps {
   labelColor: string,
   iconSize: JSX.Element | string,
   password: string,
+  keyboardTypeSubmit?: 'next' | 'done' | 'send' | 'none';
   setPassword(e: Event): void,
   submit(e: Event): void,
 }
@@ -219,6 +220,6 @@ export interface RNInputState {
 readonly showSenha: boolean;
 }
 
-export  class Input extends Component<RNInputProps, RNInputState> {
+export class Input extends Component<RNInputProps, RNInputState> {
 _renderInput(): JSX.Element | null;
 }

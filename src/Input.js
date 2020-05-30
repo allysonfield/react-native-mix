@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { TextInput, SafeAreaView, Animated, Easing, StyleSheet, Dimensions } from "react-native";
+import { TextInput, SafeAreaView, Animated, Easing, StyleSheet, Dimensions, View } from "react-native";
 
 const { width, height} = Dimensions.get('window');
 const size = 10
@@ -20,7 +20,8 @@ export default class Input extends Component {
         submit: PropTypes.func.isRequired,
         label: PropTypes.string,
         labelSize: PropTypes.number,
-        labelColor: PropTypes.string
+        labelColor: PropTypes.string,
+        keyboardTypeSubmit: PropTypes.oneOf(['next', 'done', 'send', 'none']),
     }
 
   
@@ -81,29 +82,16 @@ export default class Input extends Component {
 
     _renderInput(){
         const {
-            iconSize,
-            containerStyle,
             inputStyle,
             placeholder,
             placeholderTextColor,
-            password,
+            keyboardTypeSubmit,
             submit,
             label,
             labelColor,
         } = this.props
         return (
 
-             <SafeAreaView style={[styles.container, containerStyle]}>
-                { label && <Animated.Text 
-                    style={{
-                        position: 'absolute',
-                        bottom: this.Y,
-                        fontSize: this.SIZE,
-                        color: labelColor ? labelColor : '#000',
-                    }}
-                 >
-                     {label}
-                 </Animated.Text>}
                 <TextInput
                     autoCorrect={false}
                     ref={ref => {
@@ -116,19 +104,28 @@ export default class Input extends Component {
                     placeholder={placeholder}
                     placeholderTextColor={placeholderTextColor}
                     autoCapitalize="none"
+                    returnKeyType={keyboardTypeSubmit}
                 />
-
-            </SafeAreaView>
-
-
         );
     }
 
-    render() {
-        return (
-
-            this._renderInput()
-
+    render(){
+        const { containerStyle, label, labelColor } = this.props;
+      return (
+          <View style={[ styles.container, containerStyle]}>
+             <Animated.Text 
+                style={{
+                    position: 'absolute',
+                    bottom: this.Y,
+                    fontSize: this.SIZE,
+                    color: labelColor ? labelColor : '#000',
+                }}
+                >
+                {label}
+              </Animated.Text>
+             {this._renderInput()}
+          </View>
+  
         );
     }
 }
