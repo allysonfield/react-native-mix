@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { TextInput, SafeAreaView, Text, Animated, Easing, StyleSheet, Dimensions } from "react-native";
+import { TextInput, SafeAreaView, Animated, Easing, StyleSheet, Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const { width, height} = Dimensions.get('window');

@@ -5,7 +5,7 @@
 #import "RCTUITextField.h"
 #import "RNTextInputMask.h"
 
-@import RNMix;
+@import RNInputMask;
 
 @implementation RNMix {
     NSMutableDictionary *masks;

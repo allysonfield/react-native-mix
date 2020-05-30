@@ -2,8 +2,7 @@
 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { TextInput, SafeAreaView, Text, Animated, Easing, StyleSheet, Dimensions } from "react-native";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { TextInput, SafeAreaView, Animated, Easing, StyleSheet, Dimensions } from "react-native";
 
 const { width, height} = Dimensions.get('window');
 const size = 10

@@ -5,32 +5,48 @@ import PropTypes from "prop-types";
 import styles from "./styles";
 import Aux from "./components/Mask";
 const size = 20
-export default class CpfCnpj extends Component{
+export default class Cnpj extends Component{
+    static propTypes = {
+            ...Text.propTypes,
+            submit: PropTypes.func,
+            setData: PropTypes.func.isRequired,
+            keyboardTypeSubmit: PropTypes.oneOf(['next', 'done', 'send', 'none']),
+            placeholder: PropTypes.string,
+            inputStyle: PropTypes.any,
+            containerStyle: PropTypes.any,
+            placeholderTextColor: PropTypes.string,
+            autoFocus: PropTypes.func,
+            onFocus: PropTypes.func,
+            onEndEditing: PropTypes.func,
+            label: PropTypes.string,
+            labelColor: PropTypes.string,
+            labelSize: PropTypes.number,
+    }
+
    
     constructor(props){
         super(props)
         this.state = {
             formatted: null,
-            masker: "[000].[000].[000]-[00]"
+            masker: "[00].[000].[000]/[0000]-[00]"
         }
+
         this.Y = new Animated.Value(30 );
         this.SIZE = new Animated.Value( this.props.labelSize ? this.props.labelSize : size);
     }
+    
+
 
       setNativeProps(nativeProps) {
         this.input.setNativeProps(nativeProps);
       }
 
-    format(value) {
-    if (value.length < 15 ) {
-      this.setState({ masker: "[000].[000].[000]-[000]" })
-    }
-    if (value.length > 14 ) {
-      this.setState({ masker: "[00].[000].[000]/[0000]-[00]" })
-    }
-   
-    this.props.label && this.onChange(value)
-    return value;
+    
+
+    set(txt, txtOut) {
+        this.setState({ formatted: txt })
+        this.props.setData && this.props.setData(txtOut);
+        this.props.label && this.onChange(txtOut)
     }
 
     onChange = (text) => {
@@ -63,11 +79,6 @@ export default class CpfCnpj extends Component{
     
   }
 
-    set(txt, txtOut) {
-        this.setState({ formatted: this.format(txt) })
-        this.props.setData && this.props.setData(txtOut);
-    }
-
     focus() {
         this.input.focus();
       }
@@ -84,7 +95,7 @@ export default class CpfCnpj extends Component{
         return this.input.isFocused();
       }
 
-    _renderInput(){
+    _renderCep(){
        const {
             submit,
             keyboardTypeSubmit,
@@ -94,7 +105,6 @@ export default class CpfCnpj extends Component{
             autoFocus,
             onFocus,
             onEndEditing,
-            ...otherProps
         } = this.props;
         return (
             <Aux
@@ -121,16 +131,15 @@ export default class CpfCnpj extends Component{
             keyboardType={"numeric"}
             returnKeyType={keyboardTypeSubmit}
             style={[ styles.input, inputStyle ]}
-            {...otherProps}
           />
         );
     }
 
   render(){
-      const { containerStyle, label, labelColor } = this.props;
+      const { containerStyle, labelColor, label } = this.props;
     return (
-        <View style={[ styles.container, containerStyle]}>
-           <Animated.Text 
+        <View style={[ styles.container, containerStyle ]}>
+          <Animated.Text 
               style={{
                   position: 'absolute',
                   bottom: this.Y,
@@ -139,8 +148,8 @@ export default class CpfCnpj extends Component{
               }}
               >
               {label}
-            </Animated.Text>
-           {this._renderInput()}
+         </Animated.Text>
+           {this._renderCep()}
         </View>
 
       );
@@ -148,26 +157,4 @@ export default class CpfCnpj extends Component{
 
 
 };
-
-
-CpfCnpj.propTypes = {
-  ...Text.propTypes,
-  cpf: PropTypes.bool,
-  cnpj: PropTypes.bool,
-  submit: PropTypes.func,
-  setData: PropTypes.func.isRequired,
-  keyboardTypeSubmit: PropTypes.oneOf(['next', 'done', 'send', 'none']),
-  placeholder: PropTypes.string,
-  inputStyle: PropTypes.any,
-  containerStyle: PropTypes.any,
-  placeholderTextColor: PropTypes.string,
-  autoFocus: PropTypes.func,
-  onFocus: PropTypes.func,
-  onEndEditing: PropTypes.func,
-  label: PropTypes.string,
-  labelColor: PropTypes.string,
-  labelSize: PropTypes.number,
-}
-
-
 

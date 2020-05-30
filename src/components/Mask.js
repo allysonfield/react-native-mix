@@ -7,9 +7,9 @@ import {
   Platform
 } from 'react-native'
 
-const mask = NativeModules.RNDocumentMask.mask
-const unmask = NativeModules.RNDocumentMask.unmask
-const setMask = NativeModules.RNDocumentMask.setMask
+const mask = NativeModules.RNMix.mask
+const unmask = NativeModules.RNMix.unmask
+const setMask = NativeModules.RNMix.setMask
 export { mask, unmask, setMask }
 
 

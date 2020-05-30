@@ -40,13 +40,77 @@ export interface RNMaskCpfCnpjState {
 export class CpfCnpj extends React.Component<RNMaskCpfCnpj, any> {}
 
 
+export interface RNMaskCpf {
+
+
+  containerStyle?: StyleProp<ViewStyle>;
+
+  inputStyle?: StyleProp<TextStyle>;
+  placeholder?: string;
+  placeholderTextColor?: string;
+  cpf?: boolean;
+  cnpj?: boolean;
+  label?: string;
+  labelColor:? string;
+  labelSize:? number;
+  keyboardTypeSubmit?: 'next' | 'done' | 'send' | 'none';
+  /* A aparência do botão de submit */
+  autoFocus(e: Event): void;
+  onFocus(e: Event): void;
+  submit(e: Event): void;
+  setData(e: Event): void;
+  submit(e: Event): void;
+}
+
+
+
+export interface RNMaskCpfState {
+readonly formatted: boolean;
+readonly masker: any;
+}
+
+export class Cpf extends React.Component<RNMaskCpf, any> {}
+
+
+export interface RNMaskCnpj {
+
+
+  containerStyle?: StyleProp<ViewStyle>;
+
+  inputStyle?: StyleProp<TextStyle>;
+  placeholder?: string;
+  placeholderTextColor?: string;
+  cpf?: boolean;
+  cnpj?: boolean;
+  label?: string;
+  labelColor:? string;
+  labelSize:? number;
+  keyboardTypeSubmit?: 'next' | 'done' | 'send' | 'none';
+  /* A aparência do botão de submit */
+  autoFocus(e: Event): void;
+  onFocus(e: Event): void;
+  submit(e: Event): void;
+  setData(e: Event): void;
+  submit(e: Event): void;
+}
+
+
+
+export interface RNMaskCnpjState {
+readonly formatted: boolean;
+readonly masker: any;
+}
+
+export class Cnpj extends React.Component<RNMaskCnpj, any> {}
+
+
 //Mask for CEP
 
 
 export interface RNMaskCep {
   containerStyle?: StyleProp<ViewStyle>;
 
-  inputStyle?: StyleProp<ViewStyle>;
+  inputStyle?: StyleProp<TextStyle>;
   placeholder?: string;
   placeholderTextColor?: string;
   cpf?: boolean;
@@ -80,7 +144,7 @@ _renderCep(): JSX.Element | null;
 export interface RNMaskRg {
   containerStyle?: StyleProp<ViewStyle>;
 
-  inputStyle?: StyleProp<ViewStyle>;
+  inputStyle?: StyleProp<TextStyle>;
   placeholder?: string;
   placeholderTextColor?: string;
   cpf?: boolean;
