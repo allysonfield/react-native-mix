@@ -173,5 +173,6 @@ const styles = StyleSheet.create({
   icon: {
     position: "absolute",
     right: 0,
+    zIndex: 10
   },
 });
