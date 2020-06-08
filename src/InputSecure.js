@@ -60,7 +60,7 @@ export default class InputSecureText extends Component {
         this.props.setPassword && this.props.setPassword(txt)
           if (txt !== null || txt !== ''){
             Animated.timing(this.Y, {
-                toValue: this.props.inputStyle ? this.props.inputStyle.fontSize + 35 : 40 ,
+                toValue: this.props.inputStyle.fontSize ? this.props.inputStyle.fontSize + 35 : 40 ,
                 duration: 200,
                 asing: Easing.linear,
             }).start();

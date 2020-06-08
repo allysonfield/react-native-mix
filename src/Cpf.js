@@ -54,7 +54,7 @@ export default class Cpf extends Component{
       // this.props.setData && this.props.setData(text)
       if (text !== null || text !== ''){
         Animated.timing(this.Y, {
-            toValue: this.props.inputStyle ? this.props.inputStyle.fontSize + 40 : 55 ,
+            toValue: this.props.inputStyle.fontSize ? this.props.inputStyle.fontSize + 40 : 55 ,
             duration: 200,
             asing: Easing.linear,
         }).start();
