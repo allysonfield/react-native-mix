@@ -6,15 +6,14 @@ import styles from "./styles";
 import Aux from "./components/Mask";
 const size = 20
 export default class CpfCnpj extends Component{
-   
+
     constructor(props){
         super(props)
         this.state = {
             formatted: null,
             masker: "[000].[000].[000]-[00]"
         }
-        this.Y = new Animated.Value(30 );
-        this.SIZE = new Animated.Value( this.props.labelSize ? this.props.labelSize : size);
+
     }
 
       setNativeProps(nativeProps) {
@@ -28,11 +27,13 @@ export default class CpfCnpj extends Component{
     if (value.length > 14 ) {
       this.setState({ masker: "[00].[000].[000]/[0000]-[00]" })
     }
-   
+
     this.props.label && this.onChange(value)
     return value;
     }
-
+componentDidUpdate(prop){
+    this.componentDidMount()
+}
     onChange = (text) => {
       console.log(text);
       // this.props.setData && this.props.setData(text)
@@ -47,7 +48,7 @@ export default class CpfCnpj extends Component{
             duration: 200,
             asing: Easing.linear,
         }).start();
-      } 
+      }
       if ( text.length === 0){
         Animated.timing(this.Y, {
             toValue: 30,
@@ -60,7 +61,11 @@ export default class CpfCnpj extends Component{
             asing: Easing.linear,
         }).start();
       }
-    
+
+  }
+  componentDidMount(){
+    this.Y = new Animated.Value(30 );
+    this.SIZE = new Animated.Value( this.props.labelSize ? this.props.labelSize : size);
   }
 
     set(txt, txtOut) {
@@ -130,7 +135,7 @@ export default class CpfCnpj extends Component{
       const { containerStyle, label, labelColor } = this.props;
     return (
         <View style={[ styles.container, containerStyle]}>
-           <Animated.Text 
+           <Animated.Text
               style={{
                   position: 'absolute',
                   bottom: this.Y,

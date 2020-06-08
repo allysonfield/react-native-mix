@@ -29,11 +29,17 @@ export default class Rg extends Component{
             formatted: null,
             masker: "[0000].[000]"
         }
-        this.Y = new Animated.Value(30 );
-        this.SIZE = new Animated.Value( this.props.labelSize ? this.props.labelSize : size);
+       
     }
     
-
+    componentDidUpdate(prop){
+      this.componentDidMount();
+    }
+    
+    componentDidMount(){
+      this.Y = new Animated.Value(30 );
+      this.SIZE = new Animated.Value( this.props.labelSize ? this.props.labelSize : size);
+    }
 
       setNativeProps(nativeProps) {
         this.input.setNativeProps(nativeProps);
