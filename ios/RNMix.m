@@ -3,7 +3,7 @@
 #import <React/RCTUIManager.h>
 #import "RCTBaseTextInputView.h"
 #import "RCTUITextField.h"
-#import "RNTextInputMask.h"
+#import "RNMix.h"
 
 @import RNInputMask;
 
