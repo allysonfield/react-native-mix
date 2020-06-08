@@ -181,6 +181,7 @@ export interface RNSecureTextProps {
   iconColor: string,
   label: string,
   labelSize: number,
+  keyboardTypeSubmit?: 'next' | 'done' | 'send' | 'none';
   labelColor: string,
   iconSize: JSX.Element | string,
   password: string,

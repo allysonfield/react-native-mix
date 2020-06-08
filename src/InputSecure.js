@@ -8,7 +8,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 const { width, height} = Dimensions.get('window');
 const size = 20
 export default class InputSecureText extends Component {
-    
+
     static propTypes = {
         containerStyle: PropTypes.any,
         inputStyle: PropTypes.any,
@@ -22,7 +22,8 @@ export default class InputSecureText extends Component {
         submit: PropTypes.func.isRequired,
         label: PropTypes.string,
         labelSize: PropTypes.number,
-        labelColor: PropTypes.string
+        labelColor: PropTypes.string,
+        keyboardTypeSubmit: PropTypes.oneOf(['next', 'done', 'send', 'none']),
     }
 
     static defaultProps = {
@@ -69,7 +70,7 @@ export default class InputSecureText extends Component {
                 duration: 200,
                 asing: Easing.linear,
             }).start();
-          } 
+          }
           if ( txt.length === 0){
             Animated.timing(this.Y, {
                 toValue: 20,
@@ -82,7 +83,7 @@ export default class InputSecureText extends Component {
                 asing: Easing.linear,
             }).start();
           }
-        
+
       }
 
     _renderInput(){
@@ -94,7 +95,7 @@ export default class InputSecureText extends Component {
             placeholderTextColor,
             iconColor,
             iconStyle,
-            setPassword,
+            keyboardTypeSubmit,
             password,
             submit,
             label,
@@ -104,7 +105,7 @@ export default class InputSecureText extends Component {
         return (
 
              <SafeAreaView style={[styles.container, containerStyle]}>
-                { label && <Animated.Text 
+                { label && <Animated.Text
                     style={{
                         position: 'absolute',
                         bottom: this.Y,
@@ -127,6 +128,7 @@ export default class InputSecureText extends Component {
                     secureTextEntry={this.state.showSenha}
                     placeholderTextColor={placeholderTextColor}
                     autoCapitalize="none"
+                    returnKeyType={keyboardTypeSubmit}
                 />
 
                 <Icon
@@ -165,7 +167,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 2,
         fontSize: 10,
         flex: 0,
-        
+
     },
     icon: {
         position: "absolute",
