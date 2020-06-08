@@ -134,7 +134,7 @@ readonly formatted: boolean;
 readonly masker: any;
 }
 
-export class MaskCep extends Component<RNMaskCep, RNMaskCepState> {
+export class Cep extends Component<RNMaskCep, RNMaskCepState> {
 _renderCep(): JSX.Element | null;
 }
 
@@ -168,7 +168,7 @@ readonly formatted: boolean;
 readonly masker: any;
 }
 
-export class MaskRg extends Component<RNMaskRg, RNMaskRgState> {
+export class Rg extends Component<RNMaskRg, RNMaskRgState> {
 _renderRg(): JSX.Element | null;
 }
 

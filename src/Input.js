@@ -30,17 +30,11 @@ export default class Input extends Component {
         this.state = {
             value: true,
         };
-       
-    }
-
-    componentDidUpdate(prop){
-        this.componentDidMount()
-      }
-      
-      componentDidMount(){
         this.Y = new Animated.Value(10);
         this.SIZE = new Animated.Value( this.props.labelSize ? this.props.labelSize : size);
-      }
+    }
+
+   
 
     focus() {
         this.input.focus();

@@ -13,6 +13,8 @@ export default class CpfCnpj extends Component{
             formatted: null,
             masker: "[000].[000].[000]-[00]"
         }
+        this.Y = new Animated.Value(30 );
+        this.SIZE = new Animated.Value( this.props.labelSize ? this.props.labelSize : size);
 
     }
 
@@ -31,9 +33,7 @@ export default class CpfCnpj extends Component{
     this.props.label && this.onChange(value)
     return value;
     }
-componentDidUpdate(prop){
-    this.componentDidMount()
-}
+
     onChange = (text) => {
       console.log(text);
       // this.props.setData && this.props.setData(text)
@@ -63,10 +63,7 @@ componentDidUpdate(prop){
       }
 
   }
-  componentDidMount(){
-    this.Y = new Animated.Value(30 );
-    this.SIZE = new Animated.Value( this.props.labelSize ? this.props.labelSize : size);
-  }
+ 
 
     set(txt, txtOut) {
         this.setState({ formatted: this.format(txt) })

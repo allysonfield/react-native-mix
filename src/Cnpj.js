@@ -30,18 +30,11 @@ export default class Cnpj extends Component{
             formatted: null,
             masker: "[00].[000].[000]/[0000]-[00]"
         }
-
+        this.Y = new Animated.Value(30 );
+        this.SIZE = new Animated.Value( this.props.labelSize ? this.props.labelSize : size);
        
     }
 
-    componentDidUpdate(prop){
-      this.componentDidMount()
-    }
-    
-    componentDidMount(){
-      this.Y = new Animated.Value(30 );
-      this.SIZE = new Animated.Value( this.props.labelSize ? this.props.labelSize : size);
-    }
     
 
 
