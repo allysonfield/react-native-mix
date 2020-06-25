@@ -30,7 +30,7 @@ export default class Input extends Component {
         this.state = {
             value: true,
         };
-        this.Y = new Animated.Value(10);
+        this.Y = new Animated.Value(30);
         this.SIZE = new Animated.Value( this.props.labelSize ? this.props.labelSize : size);
     }
 
@@ -57,7 +57,7 @@ export default class Input extends Component {
         this.props.setPassword && this.props.setPassword(txt)
           if (txt !== null || txt !== ''){
             Animated.timing(this.Y, {
-                toValue: this.props.inputStyle.fontSize ? this.props.inputStyle.fontSize + 20 : 40 ,
+                toValue: this.props.inputStyle ? this.props.inputStyle.fontSize + 20 : 40 ,
                 duration: 200,
                 asing: Easing.linear,
             }).start();
@@ -69,7 +69,7 @@ export default class Input extends Component {
           } 
           if ( txt.length === 0){
             Animated.timing(this.Y, {
-                toValue: 10,
+                toValue: 30,
                 duration: 200,
                 asing: Easing.linear,
             }).start();
