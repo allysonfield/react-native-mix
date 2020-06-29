@@ -224,3 +224,30 @@ readonly showSenha: boolean;
 export class Input extends Component<RNInputProps, RNInputState> {
 _renderInput(): JSX.Element | null;
 }
+
+export interface RNPersonalizableProps {
+  containerStyle: StyleProp<ViewStyle>;
+  inputStyle: StyleProp<TextStyle>;
+  placeholder: string;
+  placeholderTextColor: JSX.Element | string;
+  iconColor: string;
+  label: string;
+  labelSize: number;
+  keyboardTypeSubmit?: 'next' | 'done' | 'send' | 'none';
+  labelColor: string;
+  iconSize: JSX.Element | string;
+  data: string;
+  masker: string;
+  setData(e: Event): void;
+  submit(e: Event): void;
+}
+
+
+
+export interface RNPersonalizableState {
+readonly showSenha: boolean;
+}
+
+export  class InputPersonalizable extends Component<RNPersonalizableProps, RNPersonalizableState> {
+_renderInput(): JSX.Element | null;
+}

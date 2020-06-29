@@ -5,6 +5,7 @@ import InputSecureText from "./src/InputSecure"
 import Input from "./src/Input";
 import Cpf from "./src/Cpf";
 import Cnpj from "./src/Cnpj";
+import Personalizable from "./src/Personalizable";
 
 export  {
      CpfCnpj,
@@ -13,5 +14,6 @@ export  {
      InputSecureText,
      Input,
      Cpf,
-     Cnpj
+     Cnpj,
+     Personalizable,
 };
