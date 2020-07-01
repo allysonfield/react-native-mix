@@ -22,6 +22,7 @@ export interface RNMaskCpfCnpj {
         labelColor:? string;
         labelSize:? number;
         keyboardTypeSubmit?: 'next' | 'done' | 'send' | 'none';
+        extracted?: boolean;
         /* A aparência do botão de submit */
         autoFocus(e: Event): void;
         onFocus(e: Event): void;
@@ -53,6 +54,7 @@ export interface RNMaskCpf {
   label?: string;
   labelColor:? string;
   labelSize:? number;
+  extracted?: boolean;
   keyboardTypeSubmit?: 'next' | 'done' | 'send' | 'none';
   /* A aparência do botão de submit */
   autoFocus(e: Event): void;
@@ -85,6 +87,7 @@ export interface RNMaskCnpj {
   label?: string;
   labelColor:? string;
   labelSize:? number;
+  extracted?: boolean;
   keyboardTypeSubmit?: 'next' | 'done' | 'send' | 'none';
   /* A aparência do botão de submit */
   autoFocus(e: Event): void;
@@ -118,6 +121,7 @@ export interface RNMaskCep {
   label: string,
   labelSize: number,
   labelColor: string,
+  extracted?: boolean;
   keyboardTypeSubmit?: 'next' | 'done' | 'send' | 'none';
   /* A aparência do botão de submit */
   autoFocus(e: Event): void;
@@ -152,6 +156,7 @@ export interface RNMaskRg {
   label: string,
   labelSize: number,
   labelColor: string,
+  extracted?: boolean;
   keyboardTypeSubmit?: 'next' | 'done' | 'send' | 'none';
   /* A aparência do botão de submit */
   autoFocus(e: Event): void;
@@ -181,6 +186,7 @@ export interface RNSecureTextProps {
   iconColor: string,
   label: string,
   labelSize: number,
+  extracted?: boolean;
   keyboardTypeSubmit?: 'next' | 'done' | 'send' | 'none';
   labelColor: string,
   iconSize: JSX.Element | string,
@@ -238,6 +244,7 @@ export interface RNPersonalizableProps {
   iconSize: JSX.Element | string;
   data: string;
   masker: string;
+  extracted?: boolean;
   setData(e: Event): void;
   submit(e: Event): void;
 }
@@ -248,6 +255,6 @@ export interface RNPersonalizableState {
 readonly showSenha: boolean;
 }
 
-export  class InputPersonalizable extends Component<RNPersonalizableProps, RNPersonalizableState> {
+export  class Personalizable extends Component<RNPersonalizableProps, RNPersonalizableState> {
 _renderInput(): JSX.Element | null;
 }

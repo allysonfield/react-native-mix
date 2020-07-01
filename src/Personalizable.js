@@ -23,6 +23,7 @@ export default class Personalizable extends Component{
             label: PropTypes.string,
             labelColor: PropTypes.string,
             labelSize: PropTypes.number,
+            extracted: PropTypes.bool,
     }
 
    
@@ -47,7 +48,10 @@ export default class Personalizable extends Component{
 
     set(txt, txtOut) {
         this.setState({ formatted: txt })
-        this.props.setData && this.props.setData(txt);
+        
+        if(this.props.setData){
+          this.props.extracted ? this.props.setData(txtOut) : this.props.setData(txt);
+        }
         this.props.label && this.onChange(txtOut)
     }
 

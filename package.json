@@ -1,6 +1,6 @@
 {
   "name": "react-native-mix",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/allysonfield/react-native-mix.git"
   },
-  "keywords": ["react-native", "javascript", "form", "mask", "input", "library", "cpf", "cnpj", "cep", "rg","elements"],
+  "keywords": ["react-native", "javascript", "form", "mask", "input", "library", "cpf", "cnpj", "cep", "rg","elements", "phone"],
   "author": {
     "email": "allysonfield2@gmail.com",
     "name": "Allyson Monteiro"

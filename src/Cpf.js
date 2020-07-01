@@ -21,6 +21,7 @@ export default class Cpf extends Component{
             label: PropTypes.string,
             labelColor: PropTypes.string,
             labelSize: PropTypes.number,
+            extracted: PropTypes.bool,
     }
 
    
@@ -45,7 +46,9 @@ export default class Cpf extends Component{
 
     set(txt, txtOut) {
         this.setState({ formatted: txt })
-        this.props.setData && this.props.setData(txtOut);
+        if(this.props.setData){
+          this.props.extracted ? this.props.setData(txtOut) : this.props.setData(txt);
+        }
         this.props.label && this.onChange(txtOut)
     }
 

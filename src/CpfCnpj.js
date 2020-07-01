@@ -67,7 +67,9 @@ export default class CpfCnpj extends Component{
 
     set(txt, txtOut) {
         this.setState({ formatted: this.format(txt) })
-        this.props.setData && this.props.setData(txtOut);
+        if(this.props.setData){
+          this.props.extracted ? this.props.setData(txtOut) : this.props.setData(txt);
+        }
     }
 
     focus() {
@@ -169,6 +171,7 @@ CpfCnpj.propTypes = {
   label: PropTypes.string,
   labelColor: PropTypes.string,
   labelSize: PropTypes.number,
+  extracted: PropTypes.bool,
 }
 
 
