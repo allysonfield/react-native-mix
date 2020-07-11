@@ -28,7 +28,7 @@ export default class Input extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: true,
+            value: null
         };
         this.Y = new Animated.Value(30);
         this.SIZE = new Animated.Value( this.props.labelSize ? this.props.labelSize : size);
@@ -52,10 +52,15 @@ export default class Input extends Component {
         return this.input.isFocused();
       }
 
-      onChange(txt) {
-          console.log(txt);
-        this.props.setPassword && this.props.setPassword(txt)
-          if (txt !== null || txt !== ''){
+      change = (txt) => {
+          this.setState({value: txt})
+          this.props.setData && this.props.setData(txt);
+      }
+
+      onChange = () => {
+     
+        // this.props.setData && this.props.setData(text)
+        if (this.state.value !== null || this.state.value !== ''){
             Animated.timing(this.Y, {
                 toValue: this.props.inputStyle ? this.props.inputStyle.fontSize + 20 : 40 ,
                 duration: 200,
@@ -66,21 +71,29 @@ export default class Input extends Component {
                 duration: 200,
                 asing: Easing.linear,
             }).start();
-          } 
-          if ( txt.length === 0){
-            Animated.timing(this.Y, {
-                toValue: 30,
-                duration: 200,
-                asing: Easing.linear,
-            }).start();
-            Animated.timing(this.SIZE, {
-                toValue:this.props.labelSize ? this.props.labelSize : size,
-                duration: 200,
-                asing: Easing.linear,
-            }).start();
-          }
-        
+        }
+       
+  
+    }
+  
+    onChange2 = () => {
+     
+      if ( this.state.value === null || this.state.value === ''){
+        Animated.timing(this.Y, {
+            toValue: 30,
+            duration: 200,
+            asing: Easing.linear,
+        }).start();
+        Animated.timing(this.SIZE, {
+            toValue:this.props.labelSize ? this.props.labelSize : size,
+            duration: 200,
+            asing: Easing.linear,
+        }).start();
       }
+  
+  }
+
+
 
     _renderInput(){
         const {
@@ -95,13 +108,15 @@ export default class Input extends Component {
         return (
 
                 <TextInput
+                onEndEditing={this.onChange2}
+            onFocus={this.onChange}
                     autoCorrect={false}
                     ref={ref => {
                         this.input = ref;
                       }}
                     onSubmitEditing={() => submit && submit()}
                     value={this.state.value}
-                    onChangeText={ txt => this.onChange(txt)}
+                    onChangeText={ txt => this.change(txt)}
                     style={[styles.input, inputStyle]}
                     placeholder={placeholder}
                     placeholderTextColor={placeholderTextColor}

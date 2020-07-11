@@ -41,6 +41,7 @@ export default class InputSecureText extends Component {
     super(props);
     this.state = {
       showSenha: true,
+      value: null,
     };
     this.Y = new Animated.Value(30);
     this.SIZE = new Animated.Value(
@@ -65,36 +66,50 @@ export default class InputSecureText extends Component {
     return this.input.isFocused();
   }
 
-  onChange(txt) {
-    console.log(txt);
-    this.props.setPassword && this.props.setPassword(txt);
-    if (txt !== null || txt !== "") {
-      Animated.timing(this.Y, {
-        toValue: this.props.inputStyle
-          ? this.props.inputStyle.fontSize + 35
-          : 40,
-        duration: 200,
-        asing: Easing.linear,
-      }).start();
-      Animated.timing(this.SIZE, {
-        toValue: this.props.labelSize ? this.props.labelSize / 1.3 : size / 1.3,
-        duration: 200,
-        asing: Easing.linear,
-      }).start();
-    }
-    if (txt.length === 0) {
-      Animated.timing(this.Y, {
-        toValue: 20,
-        duration: 200,
-        asing: Easing.linear,
-      }).start();
-      Animated.timing(this.SIZE, {
-        toValue: this.props.labelSize ? this.props.labelSize : size,
-        duration: 200,
-        asing: Easing.linear,
-      }).start();
-    }
+  change = (txt) => {
+    this.setState({value: txt})
+    this.props.setData && this.props.setData(txt);
+}
+
+onChange = () => {
+
+  // this.props.setData && this.props.setData(text)
+  if (this.state.value !== null || this.state.value !== ''){
+    Animated.timing(this.Y, {
+      toValue: this.props.inputStyle
+        ? this.props.inputStyle.fontSize + 35
+        : 40,
+      duration: 200,
+      asing: Easing.linear,
+    }).start();
+    Animated.timing(this.SIZE, {
+      toValue: this.props.labelSize ? this.props.labelSize / 1.3 : size / 1.3,
+      duration: 200,
+      asing: Easing.linear,
+    }).start();
   }
+ 
+
+}
+
+onChange2 = () => {
+
+if ( this.state.value === null || this.state.value === ''){
+  Animated.timing(this.Y, {
+    toValue: 20,
+    duration: 200,
+    asing: Easing.linear,
+  }).start();
+  Animated.timing(this.SIZE, {
+    toValue: this.props.labelSize ? this.props.labelSize : size,
+    duration: 200,
+    asing: Easing.linear,
+  }).start();
+}
+
+}
+
+ 
 
   _renderInput() {
     const {
@@ -127,13 +142,15 @@ export default class InputSecureText extends Component {
           </Animated.Text>
         )}
         <TextInput
+        onEndEditing={this.onChange2}
+        onFocus={this.onChange}
           autoCorrect={false}
           ref={(ref) => {
             this.input = ref;
           }}
           onSubmitEditing={() => submit && submit()}
           value={password}
-          onChangeText={(txt) => this.onChange(txt)}
+          onChangeText={(txt) => this.change(txt)}
           style={[styles.input, inputStyle]}
           placeholder={placeholder}
           secureTextEntry={this.state.showSenha}

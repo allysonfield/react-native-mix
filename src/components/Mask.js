@@ -66,6 +66,12 @@ export default class Aux extends Component {
   render() {
     return (<TextInput
       {...this.props}
+      onKeyPress= { (e) => { 
+        if(e.nativeEvent.key === 'Backspace') {
+           e.preventDefault(); 
+           e.stopPropagation();
+        }
+      } }
       value={undefined}
       ref={ref => {
         this.input = ref

@@ -25,7 +25,7 @@ export interface RNMaskCpfCnpj {
         extracted?: boolean;
         /* A aparência do botão de submit */
         autoFocus(e: Event): void;
-        onFocus(e: Event): void;
+    
         submit(e: Event): void;
         setData(e: Event): void;
         submit(e: Event): void;
@@ -58,7 +58,6 @@ export interface RNMaskCpf {
   keyboardTypeSubmit?: 'next' | 'done' | 'send' | 'none';
   /* A aparência do botão de submit */
   autoFocus(e: Event): void;
-  onFocus(e: Event): void;
   submit(e: Event): void;
   setData(e: Event): void;
   submit(e: Event): void;
@@ -91,7 +90,6 @@ export interface RNMaskCnpj {
   keyboardTypeSubmit?: 'next' | 'done' | 'send' | 'none';
   /* A aparência do botão de submit */
   autoFocus(e: Event): void;
-  onFocus(e: Event): void;
   submit(e: Event): void;
   setData(e: Event): void;
   submit(e: Event): void;
@@ -125,7 +123,6 @@ export interface RNMaskCep {
   keyboardTypeSubmit?: 'next' | 'done' | 'send' | 'none';
   /* A aparência do botão de submit */
   autoFocus(e: Event): void;
-  onFocus(e: Event): void;
   submit(e: Event): void;
   setData(e: Event): void;
   submit(e: Event): void;
@@ -160,7 +157,6 @@ export interface RNMaskRg {
   keyboardTypeSubmit?: 'next' | 'done' | 'send' | 'none';
   /* A aparência do botão de submit */
   autoFocus(e: Event): void;
-  onFocus(e: Event): void;
   submit(e: Event): void;
   setData(e: Event): void;
   submit(e: Event): void;
@@ -199,6 +195,7 @@ export interface RNSecureTextProps {
 
 export interface RNSecureTextState {
 readonly showSenha: boolean;
+readonly data: string;
 }
 
 export  class InputSecureText extends Component<RNSecureTextProps, RNSecureTextState> {
@@ -215,16 +212,16 @@ export interface RNInputProps {
   labelSize: number,
   labelColor: string,
   iconSize: JSX.Element | string,
-  password: string,
+  data: string,
   keyboardTypeSubmit?: 'next' | 'done' | 'send' | 'none';
-  setPassword(e: Event): void,
+  setData(e: Event): void,
   submit(e: Event): void,
 }
 
 
 
 export interface RNInputState {
-readonly showSenha: boolean;
+readonly data: string;
 }
 
 export class Input extends Component<RNInputProps, RNInputState> {
@@ -252,7 +249,7 @@ export interface RNPersonalizableProps {
 
 
 export interface RNPersonalizableState {
-readonly showSenha: boolean;
+readonly formatted: string;
 }
 
 export  class Personalizable extends Component<RNPersonalizableProps, RNPersonalizableState> {

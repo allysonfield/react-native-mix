@@ -47,15 +47,15 @@ export default class Rg extends Component{
         if(this.props.setData){
           this.props.extracted ? this.props.setData(txtOut) : this.props.setData(txt);
         }
-        this.props.label && this.onChange(txtOut)
+        // this.props.label && this.onChange(txtOut)
     }
 
-    onChange = (text) => {
-      console.log(text);
+    onChange = () => {
+     
       // this.props.setData && this.props.setData(text)
-      if (text !== null || text !== ''){
+      if (this.state.formatted !== null || this.state.formatted !== ''){
         Animated.timing(this.Y, {
-            toValue: this.props.inputStyle.fontSize ? this.props.inputStyle.fontSize + 40 : 55 ,
+            toValue: this.props.inputStyle ? this.props.inputStyle.fontSize + 40 : 55 ,
             duration: 200,
             asing: Easing.linear,
         }).start();
@@ -64,22 +64,29 @@ export default class Rg extends Component{
             duration: 200,
             asing: Easing.linear,
         }).start();
-      } 
-      if ( text.length === 0){
-        Animated.timing(this.Y, {
-            toValue: 30,
-            duration: 200,
-            asing: Easing.linear,
-        }).start();
-        Animated.timing(this.SIZE, {
-            toValue:this.props.labelSize ? this.props.labelSize : size,
-            duration: 200,
-            asing: Easing.linear,
-        }).start();
       }
-    
+     
+
   }
 
+  onChange2 = () => {
+   
+    if ( this.state.formatted === null || this.state.formatted === ''){
+      Animated.timing(this.Y, {
+          toValue: 30,
+          duration: 200,
+          asing: Easing.linear,
+      }).start();
+      Animated.timing(this.SIZE, {
+          toValue:this.props.labelSize ? this.props.labelSize : size,
+          duration: 200,
+          asing: Easing.linear,
+      }).start();
+    }
+
+}
+
+   
     focus() {
         this.input.focus();
       }
@@ -109,8 +116,8 @@ export default class Rg extends Component{
         } = this.props;
         return (
             <Aux
-            onEndEditing={onEndEditing}
-            onFocus={onFocus}
+            onEndEditing={this.onChange2}
+            onFocus={this.onChange}
             autoFocus={autoFocus}
             placeholder={placeholder}
             placeholderTextColor={placeholderTextColor}

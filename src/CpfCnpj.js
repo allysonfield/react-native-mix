@@ -11,7 +11,8 @@ export default class CpfCnpj extends Component{
         super(props)
         this.state = {
             formatted: null,
-            masker: "[000].[000].[000]-[00]"
+            masker: "[000].[000].[000]-[00]",
+
         }
         this.Y = new Animated.Value(30 );
         this.SIZE = new Animated.Value( this.props.labelSize ? this.props.labelSize : size);
@@ -22,22 +23,24 @@ export default class CpfCnpj extends Component{
         this.input.setNativeProps(nativeProps);
       }
 
-    format(value) {
-    if (value.length < 15 ) {
-      this.setState({ masker: "[000].[000].[000]-[000]" })
+    format() {
+    if (String(this.state.formatted).length < 15 ) {
+      // this.setState({ masker: "[000].[000].[000]-[000]" })
+      return '[000].[000].[000]-[000]'
     }
-    if (value.length > 14 ) {
-      this.setState({ masker: "[00].[000].[000]/[0000]-[00]" })
-    }
-
-    this.props.label && this.onChange(value)
-    return value;
+    if (String(this.state.formatted).length > 14 ) {
+      // this.setState({ masker: "[00].[000].[000]/[0000]-[00]" })
+      return '[00].[000].[000]/[0000]-[00]';
     }
 
-    onChange = (text) => {
-      console.log(text);
+    // this.props.label && this.onChange(value)
+    // return value;
+    }
+
+    onChange = () => {
+     
       // this.props.setData && this.props.setData(text)
-      if (text !== null || text !== ''){
+      if (this.state.formatted !== null || this.state.formatted !== ''){
         Animated.timing(this.Y, {
             toValue: this.props.inputStyle ? this.props.inputStyle.fontSize + 40 : 55 ,
             duration: 200,
@@ -49,24 +52,31 @@ export default class CpfCnpj extends Component{
             asing: Easing.linear,
         }).start();
       }
-      if ( text.length === 0){
-        Animated.timing(this.Y, {
-            toValue: 30,
-            duration: 200,
-            asing: Easing.linear,
-        }).start();
-        Animated.timing(this.SIZE, {
-            toValue:this.props.labelSize ? this.props.labelSize : size,
-            duration: 200,
-            asing: Easing.linear,
-        }).start();
-      }
+     
 
   }
+
+  onChange2 = () => {
+   
+    if ( this.state.formatted === null || this.state.formatted === ''){
+      Animated.timing(this.Y, {
+          toValue: 30,
+          duration: 200,
+          asing: Easing.linear,
+      }).start();
+      Animated.timing(this.SIZE, {
+          toValue:this.props.labelSize ? this.props.labelSize : size,
+          duration: 200,
+          asing: Easing.linear,
+      }).start();
+    }
+
+}
  
 
     set(txt, txtOut) {
-        this.setState({ formatted: this.format(txt) })
+        this.setState({ formatted: txt })
+        this.format();
         if(this.props.setData){
           this.props.extracted ? this.props.setData(txtOut) : this.props.setData(txt);
         }
@@ -96,14 +106,13 @@ export default class CpfCnpj extends Component{
             inputStyle,
             placeholderTextColor,
             autoFocus,
-            onFocus,
             onEndEditing,
             ...otherProps
         } = this.props;
         return (
             <Aux
-            onEndEditing={onEndEditing}
-            onFocus={onFocus}
+            onEndEditing={this.onChange2}
+            onFocus={this.onChange}
             autoFocus={autoFocus}
             placeholder={placeholder}
             placeholderTextColor={placeholderTextColor}
@@ -121,7 +130,7 @@ export default class CpfCnpj extends Component{
 
               this.set(formatted, extracted);
             }}
-            mask={this.state.masker}
+            mask={this.format()}
             keyboardType={"numeric"}
             returnKeyType={keyboardTypeSubmit}
             style={[ styles.input, inputStyle ]}
