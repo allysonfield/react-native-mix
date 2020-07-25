@@ -120,6 +120,7 @@ export default class Personalizable extends Component{
             onEndEditing,
             masker,
             data,
+            editable,
         } = this.props;
         return (
             <Aux
@@ -129,6 +130,7 @@ export default class Personalizable extends Component{
             placeholder={placeholder}
             placeholderTextColor={placeholderTextColor}
             value={data}
+            editable={editable}
             onSubmitEditing={() =>
               submit && submit()
             }

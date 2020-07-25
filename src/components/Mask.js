@@ -66,12 +66,6 @@ export default class Aux extends Component {
   render() {
     return (<TextInput
       {...this.props}
-      onKeyPress= { (e) => { 
-        if(e.nativeEvent.key === 'Backspace') {
-           e.preventDefault(); 
-           e.stopPropagation();
-        }
-      } }
       value={undefined}
       ref={ref => {
         this.input = ref
@@ -79,6 +73,7 @@ export default class Aux extends Component {
           this.props.refInput(ref)
         }
       }}
+      editable={this.props.editable}
       multiline={this.props.mask && Platform.OS === 'ios' ? false : this.props.multiline}
       onChangeText={masked => {
         if (this.props.mask) {
