@@ -8,7 +8,6 @@ export default StyleSheet.create({
     },
     input: {
         borderBottomWidth: 2,
-        marginBottom: 20,
         fontSize: 18,
         width: "100%",
         height: 50,
